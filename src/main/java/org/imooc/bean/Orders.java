@@ -10,7 +10,7 @@ import lombok.Data;
 
 @JsonInclude(Include.NON_NULL)
 @Data
-public class Orders {
+public class Orders extends BaseBean{
 	/**
 	 * 订单id
 	 */

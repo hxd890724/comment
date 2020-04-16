@@ -70,16 +70,8 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
-	public List<OrdersDto> searchByPage(OrdersDto ordersDto) {
-		List<OrdersDto> result = new ArrayList<OrdersDto>();
-		Orders condition = new Orders();
-		BeanUtils.copyProperties(ordersDto, condition);
-		List<Orders> adList = ordersDao.searchByPage(condition);
-		for (Orders order : adList) {
-			OrdersDto ordersDtoTmp = new OrdersDto();
-			result.add(ordersDtoTmp);
-			BeanUtils.copyProperties(order, ordersDtoTmp);
-		}
-		return result;
+	public List<Orders> searchByPage(OrdersDto ordersDto) {
+		List<Orders> ordersList = ordersDao.searchByPage(ordersDto);
+		return ordersList;
 	}
 }

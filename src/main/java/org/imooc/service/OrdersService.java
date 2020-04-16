@@ -44,5 +44,5 @@ public interface OrdersService {
 	 * @param ordersDto 查询条件(包含分页对象)
 	 * @return 订单列表
 	 */
-	List<OrdersDto> searchByPage(OrdersDto ordersDto);
+	List<Orders> searchByPage(OrdersDto ordersDto);
 }

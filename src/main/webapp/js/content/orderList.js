@@ -1,6 +1,8 @@
-function search() {
-    var phone = $('#title').val();
-    $("#mainForm").attr("method","GET");
-    $("#mainForm").attr("action",$("#basePath").val() + "/orders/search/"+phone);
+$(function() {
+    common.showMessage($("#message").val());
+});
+
+function search(currentPage) {
+    $("#currentPage").val(currentPage);
     $("#mainForm").submit();
 }
