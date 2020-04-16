@@ -5,15 +5,18 @@
 <mapper namespace="org.imooc.dao.OrdersDao">
     <resultMap type="Orders" id="OrdersResultMap">
         <id column="id" property="id"/>
+        <result column="business_id" property="businessId"/>
+        <result column="member_id" property="memberId" />
+        <result column="num" property="num" />
         <result column="comment_state" property="commentState"/>
         <result column="price" property="price"/>
-        <association property="business" javaType="Business">
-            <result column="img_file_name" property="imgFileName"/>
-            <result column="title" property="title"/>
-            <result column="number" property="number"/>
-        </association>
         <association property="member" javaType="Member">
             <result column="phone" property="phone"/>
+        </association>
+        <association property="business" javaType="Business" >
+            <result column="img_file_name" property="imgFileName" />
+            <result column="title" property="title" />
+            <result column="number" property="number" />
         </association>
     </resultMap>
 
@@ -61,13 +64,14 @@
         </if>
     </select>
 
-    <select id="searchByPage" resultType="Orders">
+    <!--查询-->
+    <select id="searchByPage" resultMap="OrdersResultMap">
 		select o.id, o.price, m.phone
 		from orders o, member m
 		where
 		o.member_id = m.id
-		<if test="phone != null and phone!= ''">
-			and m.phone = #{phone}
+		<if test="title!= null and title!= ''">
+			and m.phone like '${title}%'
 		</if>
 		order by o.id, m.phone
 	</select>
